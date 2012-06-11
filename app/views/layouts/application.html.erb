@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<!--html. why not name the file?-->
 <html>
-<!--seems repetitive-->
-<!--...-->
+
   <head>
     <title><%= full_title(yield(:title)) %></title>
-<!--...-->
     <%= stylesheet_link_tag    "application", :media => "all" %>
-<!--use the style sheet named application for all media-->
-<!--what makes this a stylesheet link tag?-->
-<!--this is  default rails stuff;app/assets/stylesheets is one default location; the rails scaffold generated a stylesheet file there; you could  optionally provide a path or url to the stylesheet. .-->
     <%= javascript_include_tag "application" %>
-<!--use the javascript file named application -->
     <%= csrf_meta_tags %>
-<!--include cross site reference forgery prevention module-->
-<!--workaround for older IE versions in javascript. Is it commented out?-->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <%= render 'layouts/shim' %>   
   </head>
   <body>
   <!--declare two html classes for the bit at thte top of the page-->
