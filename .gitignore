@@ -19,6 +19,8 @@ doc/
 *.swp
 *~
 .project
-.DS_Store
+*/.DS_Store
 bundler_stubs/
+*.sublime-workspace
+
 
