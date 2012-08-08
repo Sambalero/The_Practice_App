@@ -1,6 +1,4 @@
 H33::Application.routes.draw do
-  
-  get "users/new"
 
   root to: 'static_pages#home'
 
@@ -12,7 +10,7 @@ H33::Application.routes.draw do
 
   match '/signup',  to: 'users#new'
 
-  
+  resources :users
 
 
 
