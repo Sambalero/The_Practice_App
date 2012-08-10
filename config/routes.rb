@@ -2,6 +2,10 @@ H33::Application.routes.draw do
 
   root to: 'static_pages#home'
 
+  resources :users
+
+  resources :sessions, only: [:new, :create, :destroy]
+
   match '/help',    to: 'static_pages#help'
 
   match '/about',   to: 'static_pages#about'
@@ -10,7 +14,9 @@ H33::Application.routes.draw do
 
   match '/signup',  to: 'users#new'
 
-  resources :users
+  match '/signin',  to: 'sessions#new'
+  
+  match '/signout', to: 'sessions#destroy', via: :delete
 
 
 
