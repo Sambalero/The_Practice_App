@@ -18,6 +18,25 @@ H33::Application.routes.draw do
   
   match '/signout', to: 'sessions#destroy', via: :delete
 
+# ➜  h33 git:(updating) ✗ rake routes
+#        root        /                         static_pages#home
+#       users GET    /users(.:format)          users#index
+#             POST   /users(.:format)          users#create
+#    new_user GET    /users/new(.:format)      users#new
+#   edit_user GET    /users/:id/edit(.:format) users#edit
+#        user GET    /users/:id(.:format)      users#show
+#             PUT    /users/:id(.:format)      users#update
+#             DELETE /users/:id(.:format)      users#destroy
+#    sessions POST   /sessions(.:format)       sessions#create
+# new_session GET    /sessions/new(.:format)   sessions#new
+#     session DELETE /sessions/:id(.:format)   sessions#destroy
+#        help        /help(.:format)           static_pages#help
+#       about        /about(.:format)          static_pages#about
+#     contact        /contact(.:format)        static_pages#contact
+#      signup        /signup(.:format)         users#new
+#      signin        /signin(.:format)         sessions#new
+#     signout DELETE /signout(.:format)        sessions#destroy
+
 
 
   # The priority is based upon order of creation:

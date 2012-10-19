@@ -2,15 +2,36 @@ require 'spec_helper'
 
 describe "User pages" do
 
-  subject { page }
+  subject { page } #referencing the page variable supplied by Capybara...
 
-  describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
+  describe "profile page" do #what profile page?
+    let(:user) { FactoryGirl.create(:user) } #spec/factories.rb creates a user with some magic
+    before { visit user_path(user) } #visit (capybara) user_path--"rake 
+      # routes" on command line will reveal  "user GET    /users/:id(.:format)      users#show"
+      # meaning that "/users/:id" is the "user_path" {how cool is that!}
 
-    it { should have_selector('h1',    text: user.name) }
+    it { should have_selector('h1',    text: user.name) } #IT is therefore /users/show/:id
     it { should have_selector('title', text: user.name) }
   end
+
+  describe "edit" do
+  let(:user) { FactoryGirl.create(:user) }
+  before { visit edit_user_path(user) } #edit_user_path(user) is RubyObscure for
+   #GET    /users/:id/edit ??How do we get here through the app??
+
+    describe "page" do
+      it { should have_selector('h1',    text: "Update your profile") }
+      it { should have_selector('title', text: "Edit user") }
+      it { should have_link('change', href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid information" do #this seems to be the same as "with no information"
+      before { click_button "Save changes" } #PUT to user => User/update because config/routes/ resources :users
+
+      it { should have_content('error') }
+    end
+  end
+
 
 	describe "signup" do
 
@@ -46,6 +67,6 @@ describe "User pages" do
       end
     end
   end
-
-
 end
+
+
