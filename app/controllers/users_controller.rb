@@ -6,6 +6,7 @@ before_filter :admin_user,     only: :destroy
   def show
     @user = User.find(params[:id]) #on create, @user is passed to show, 
     #but I think rails still looks up @user with @user.id. 
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def new
@@ -49,21 +50,13 @@ before_filter :admin_user,     only: :destroy
 
   private
 
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_url, notice: "Please sign in." 
-      #shortcut for setting flash[:notice], (works for the :error key, but not for :success.)
-  end
-
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
   end
 
-      def admin_user
+  def admin_user
       redirect_to(root_path) unless current_user.admin?
-    end
+  end
 end
   
-end #?????

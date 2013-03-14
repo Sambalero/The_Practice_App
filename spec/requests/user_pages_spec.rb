@@ -49,14 +49,23 @@ describe "User pages" do
     end
   end
  
-  describe "profile page" do #what profile page?
-    let(:user) { FactoryGirl.create(:user) } #spec/factories.rb creates a user with some magic
-    before { visit user_path(user) } #visit (capybara) user_path--"rake 
-      # routes" on command line will reveal  "user GET    /users/:id(.:format)      users#show"
+   describe "profile page" do
+    let(:user) { FactoryGirl.create(:user) }#spec/factories.rb creates a user with some magic
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+
+    before { visit user_path(user) }#visit (capybara) user_path--"rake 
+          # routes" on command line will reveal  "user GET    /users/:id(.:format)      users#show"
       # meaning that "/users/:id" is the "user_path" {how cool is that!}
 
-    it { should have_selector('h1',    text: user.name) } #IT is therefore /users/show/:id
+    it { should have_selector('h1',    text: user.name) }#IT is therefore /users/show/:id
     it { should have_selector('title', text: user.name) }
+
+    describe "microposts" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
   end
 
   describe "edit" do
