@@ -1,10 +1,14 @@
 class MicropostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: :destroy
+
 #without the correct user before filter, destroy flat out won't work. why not?
 #NoMethodError in MicropostsController#destroy
 #undefined method `destroy' for nil:NilClass
 
+  def index
+  end
+  
   def create
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
