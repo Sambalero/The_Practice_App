@@ -18,15 +18,16 @@
   </div>  
 <% else %>
   <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
+    <h1>Welcome to the Practice App</h1>
 
     <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
+      This is <a href="http://kevinswallow.com">Kevin Swallow's</a> demo of 
+      <a href="http://railstutorial.org/">Michael Hartl's Ruby on Rails </a>
+      Tutorial.
     </h2>
-
-    <%= link_to "Sign up now!", signup_path, 
+<%= link_to "Visit my Home Page!", "http://kevinswallow.com", 
+                                class: "btn btn-large btn-primary" %>
+    <%= link_to "Sign up for the Practice App!", signup_path, 
                                 class: "btn btn-large btn-primary" %>
   </div>
 
